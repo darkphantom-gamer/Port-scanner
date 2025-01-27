@@ -1,6 +1,6 @@
 # Port Scanner Tool  
 
-> **WARNING:** This tool is intended for educational purposes only.Its not one for my cool college projects and  I am not responsible for any misuse, unauthorized activities, or damages caused by this tool. Use it responsibly and only on networks you own or have explicit permission to scan.  
+> **WARNING:** This tool is intended for educational purposes only.Its not one of my plain college projects and  I am not responsible for any misuse, unauthorized activities, or damages caused by this tool. Use it responsibly and only on networks you own or have explicit permission to scan.  
 
 ---
 
@@ -59,6 +59,7 @@ OR
   ````
 ![proof](https://github.com/darkphantom-gamer/Port-scanner/blob/ebe30a7c9392d8cf7c68685c8244f6844f6e4edc/scan1.png)
 ![proof](https://github.com/darkphantom-gamer/Port-scanner/blob/ebe30a7c9392d8cf7c68685c8244f6844f6e4edc/scan2.png)
+**Here all test performed in my network**
 8. You can change the Dockerfile and Docker-compose.yml if ur an expert :)
 
 🖥️ Usage
