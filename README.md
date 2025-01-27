@@ -70,11 +70,13 @@ Example:
 python port_scanner.py --target 192.168.1.1 --ports 1-1024
 ```
 📂 Project Structure
+```
 port-scanner/
 ├── port_scanner.py    # Main script
-├── requirements.txt   # Required libraries
+├── Dockerfile   # Dockerfile
 ├── README.md          # Documentation
 └── LICENSE            # License details
+```
 ⚙️ Arguments
 Argument	Description	Example
 --target	Target IP address or domain	192.168.1.1
