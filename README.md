@@ -48,7 +48,7 @@ Ensure you have the following installed:
 ```
 7. Open Browser and go to:
   ```
-   localhost:127.0.0.1:1000
+   localhost:1000
 ```
 OR 
 ````
