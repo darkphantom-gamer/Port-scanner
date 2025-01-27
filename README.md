@@ -1,6 +1,6 @@
 # Port Scanner Tool  
 
-> **WARNING:** This tool is intended for educational purposes only. I am not responsible for any misuse, unauthorized activities, or damages caused by this tool. Use it responsibly and only on networks you own or have explicit permission to scan.  
+> **WARNING:** This tool is intended for educational purposes only.Its not one for my cool college projects and  I am not responsible for any misuse, unauthorized activities, or damages caused by this tool. Use it responsibly and only on networks you own or have explicit permission to scan.  
 
 ---
 
