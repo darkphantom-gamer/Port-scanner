@@ -25,15 +25,16 @@ Ensure you have the following installed:
 
 1. Clone the repository:
 
+       sudo apt update && sudo apt upgrade
        git clone https://github.com/yourusername/port-scanner.git
        cd port-scanner
    
-2. Install dependencies:
+3. Install dependencies:
 
          pip install flask
          sudo apt install nmap
          sudo apt install python3-venv
-3. Create a virtual enviroment
+4. Create a virtual enviroment
 ```
     python3 -m venv myenv
 ```
