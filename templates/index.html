@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Port Scanner</title>
+    <style>
+        body {
+            background-color: #1e1e2f;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            min-height: 100vh;
+        }
+        input, button {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            width: 300px;
+            background-color: #262626;
+            color: #00ff00;
+        }
+        button {
+            background-color: #00ff00;
+            color: #000;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00cc00;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #262626;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .progress-bar-inner {
+            height: 30px;
+            width: 0%;
+            background-color: #00ff00;
+            text-align: center;
+            line-height: 30px;
+            color: black;
+        }
+        .output {
+            display: none;
+            background-color: #262626;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            margin-top: 20px;
+            overflow: auto;
+            max-height: 300px;
+        }
+        .error {
+            color: #ff4d4d;
+        }
+        /* New style for the bottom right text */
+        .footer-text {
+            position: absolute;
+            bottom: 18px;
+            right: 18px;
+            color: #00ff00;
+            font-size: 14px;
+            font-family: "Courier New", Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Port Scanner</h1>
+    <p>Enter the hostname or IP address to scan:</p>
+    <input type="text" id="target" placeholder="e.g., 192.168.1.1" />
+    <button onclick="scan()">Scan</button>
+
+    <div class="progress-bar">
+        <div id="progress-bar-inner" class="progress-bar-inner">0%</div>
+    </div>
+    <div id="output" class="output"></div>
+
+    <!-- Footer Text -->
+    <div class="footer-text">~ made by Himkamal with coffee :)</div>
+    <script>
+        async function scan() {
+            const target = document.getElementById('target').value;
+            const outputDiv = document.getElementById('output');
+            const progressBar = document.getElementById('progress-bar-inner');
+            outputDiv.style.display = "none";  // Hide output initially
+            progressBar.style.width = "0%";
+            progressBar.textContent = "0%";
+
+            const response = await fetch('/scan', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ target })
+            });
+
+            if (!response.ok) {
+                const result = await response.json();
+                outputDiv.innerHTML = `<p class="error">${result.error}</p>`;
+                return;
+            }
+
+            // Stream the results
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder('utf-8');
+            let content = '';
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value);
+                content += chunk;
+
+                // Extract percentage progress from Nmap stats
+                const match = chunk.match(/data:(\d+\.?\d*)/);
+                if (match) {
+                    const percent = parseFloat(match[1]);
+                    progressBar.style.width = `${percent}%`;
+                    progressBar.textContent = `${Math.round(percent)}%`;
+                }
+            }
+
+            // Ensure that the progress bar hits 100% on completion
+            progressBar.style.width = "100%";
+            progressBar.textContent = "100%";
+
+            // Show the result if there's any output
+            if (content.trim() === '') {
+                outputDiv.innerHTML = `<p class="error">No ports found or no result returned.</p>`;
+            } else {
+                outputDiv.innerHTML = `<pre>${content}</pre>`;
+            }
+            outputDiv.style.display = "block";  // Show output once scan is complete
+        }
+    </script>
+</body>
+</html>
