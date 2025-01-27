@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  port-scanner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: port-scanner
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
