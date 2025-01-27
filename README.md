@@ -57,7 +57,8 @@ OR
    ````
     <your private ip>:1000
   ````
-![proof](https://gainways.online/.git-img/scanner/pic1)
+![proof](https://github.com/darkphantom-gamer/Port-scanner/blob/a6cf5fb7c33c27bdef97e45f5bab714375fa0d96/scan1.png)
+![proof](https://github.com/darkphantom-gamer/Port-scanner/blob/ebe30a7c9392d8cf7c68685c8244f6844f6e4edc/scan2.png)
 8. You can change the Dockerfile and Docker-compose.yml if ur an expert :)
 
 🖥️ Usage
