@@ -18,7 +18,7 @@
 ### Prerequisites  
 
 Ensure you have the following installed:  
-- Python 3.x  
+- Python 3.12 or 3.10  
 - Required Python libraries (flask)
 
 ### Installation For Linux (Windows not tested)
